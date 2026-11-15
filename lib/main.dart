@@ -100,6 +100,13 @@ class ShaghalApp extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final mode = ref.watch(themeModeProvider);
+    // أول ما المكتبة تتحمّل، نرجّع آخر أغنية كانت شغّالة
+    ref.listen(libraryProvider, (_, next) {
+      next.whenData((all) => ref.read(playerProvider).restore(all));
+    });
+    ref
+        .read(libraryProvider)
+        .whenData((all) => ref.read(playerProvider).restore(all));
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       title: 'Shaghal - شغل',

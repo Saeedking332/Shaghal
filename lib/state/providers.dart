@@ -1,3 +1,4 @@
+import 'dart:async';
 import 'dart:collection';
 import 'dart:convert';
 import 'dart:io';
@@ -361,6 +362,78 @@ class PlayerController {
   PlayerController() {
     player = Player();
     video = VideoController(player);
+    // بنحفظ مكان التشغيل عشان نكمّل منه بعد ما التطبيق يتقفل
+    player.stream.playlist.listen((_) => saveState());
+    player.stream.playing.listen((playing) {
+      saveState();
+      _ticker?.cancel();
+      if (playing) {
+        _ticker = Timer.periodic(
+            const Duration(seconds: 4), (_) => saveState());
+      }
+    });
+  }
+
+  Timer? _ticker;
+  String? _lastKey;
+  bool _restored = false;
+
+  /// مفتاح ثابت للأغنية: مسار التطبيق على iOS بيتغيّر مع كل تثبيت، فبنستخدم
+  /// الفولدر + اسم الملف بدل المسار الكامل.
+  String _key(MediaItem t) => p.join(t.folder, p.basename(t.path));
+
+  Future<void> saveState() async {
+    final cur = itemFor(player.state.playlist);
+    if (cur == null || queue.isEmpty) return;
+    final key = _key(cur);
+    // لو الأغنية اتغيّرت، الـ position القديم بتاع اللي قبلها
+    final pos = key == _lastKey ? player.state.position.inMilliseconds : 0;
+    _lastKey = key;
+    try {
+      final f = await _prefFile('last_play.json');
+      await f.writeAsString(jsonEncode({
+        'queue': [for (final t in queue) _key(t)],
+        'current': key,
+        'pos': pos,
+      }));
+    } catch (_) {}
+  }
+
+  /// بيرجّع آخر أغنية كانت شغّالة (واقفة، من غير تشغيل تلقائي) عند فتح التطبيق.
+  Future<void> restore(List<MediaItem> all) async {
+    if (_restored) return;
+    _restored = true;
+    if (player.state.playlist.medias.isNotEmpty) return;
+    try {
+      final f = await _prefFile('last_play.json');
+      if (!await f.exists()) return;
+      final m = jsonDecode(await f.readAsString()) as Map<String, dynamic>;
+      final byKey = {for (final t in all) _key(t): t};
+      final items = <MediaItem>[
+        for (final k in (m['queue'] as List))
+          if (byKey[k] != null) byKey[k]!,
+      ];
+      final current = m['current'] as String?;
+      final idx = items.indexWhere((t) => _key(t) == current);
+      if (idx < 0) return;
+      final pos = Duration(milliseconds: (m['pos'] as num?)?.toInt() ?? 0);
+
+      queue = items;
+      _lastKey = current;
+      await player.open(
+        Playlist([for (final i in items) Media(i.path)], index: idx),
+        play: false,
+      );
+      if (pos <= Duration.zero) return;
+      if (player.state.duration == Duration.zero) {
+        await player.stream.duration
+            .firstWhere((d) => d > Duration.zero)
+            .timeout(const Duration(seconds: 6));
+      }
+      // لو المستخدم شغّل حاجة تانية في الأثناء منكمّلش
+      final now = itemFor(player.state.playlist);
+      if (now != null && _key(now) == current) await player.seek(pos);
+    } catch (_) {}
   }
 
   late final Player player;
@@ -398,7 +471,10 @@ class PlayerController {
     } catch (_) {}
   }
 
-  Future<void> dispose() => player.dispose();
+  Future<void> dispose() {
+    _ticker?.cancel();
+    return player.dispose();
+  }
 }
 
 final playerProvider = Provider<PlayerController>((ref) {

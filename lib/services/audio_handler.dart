@@ -28,12 +28,27 @@ class ShaghalAudioHandler extends BaseAudioHandler with SeekHandler {
   }
 
   final PlayerController _c;
+  bool _resumeAfter = false; // كنا شغّالين لما المكالمة/التطبيق التاني قاطعنا
   final Stopwatch _sinceBroadcast = Stopwatch()..start();
 
   Future<void> _listenSession() async {
     final session = await AudioSession.instance;
-    session.interruptionEventStream.listen((e) {
-      if (e.begin) _c.player.pause(); // مكالمة أو تطبيق تاني خد الصوت
+    session.interruptionEventStream.listen((e) async {
+      if (e.begin) {
+        // مكالمة أو تطبيق تاني خد الصوت
+        if (_c.player.state.playing) {
+          _resumeAfter = true;
+          await _c.player.pause();
+        }
+      } else if (_resumeAfter) {
+        // المقاطعة خلصت: نكمّل تلقائيًا
+        _resumeAfter = false;
+        try {
+          await session.setActive(true);
+        } catch (_) {}
+        await Future<void>.delayed(const Duration(milliseconds: 300));
+        await _c.player.play();
+      }
     });
     session.becomingNoisyEventStream.listen((_) => _c.player.pause()); // فصل السماعة
   }
@@ -95,6 +110,7 @@ class ShaghalAudioHandler extends BaseAudioHandler with SeekHandler {
 
   @override
   Future<void> play() async {
+    _resumeAfter = false;
     try {
       await (await AudioSession.instance).setActive(true);
     } catch (_) {}
@@ -102,7 +118,10 @@ class ShaghalAudioHandler extends BaseAudioHandler with SeekHandler {
   }
 
   @override
-  Future<void> pause() => _c.player.pause();
+  Future<void> pause() {
+    _resumeAfter = false;
+    return _c.player.pause();
+  }
 
   @override
   Future<void> seek(Duration position) => _c.player.seek(position);

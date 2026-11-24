@@ -10,7 +10,12 @@ flutter create --platforms=android --project-name shaghal --org com.yalkhodary a
 cp -R lib/. app/lib/
 mkdir -p app/assets/icon
 cp assets/icon/icon.png app/assets/icon/icon.png
-cp flutter_launcher_icons.yaml app/
+cat > app/flutter_launcher_icons.yaml <<'YAML'
+flutter_launcher_icons:
+  android: true
+  ios: false
+  image_path: "assets/icon/icon.png"
+YAML
 
 cd app
 flutter pub add flutter_riverpod media_kit media_kit_video media_kit_libs_android_video path_provider path file_picker:^10.0.0 audio_service audio_session liquid_design:^0.4.1 audio_metadata_reader video_thumbnail

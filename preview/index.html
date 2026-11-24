@@ -1,0 +1,59 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#08090d">
+  <title>Shaghal | شغّل</title>
+  <style>
+    :root{color-scheme:dark;--bg:#08090d;--panel:#11131a;--muted:#9da3b2;--line:#262a35;--blue:#0a84ff}
+    *{box-sizing:border-box}body{margin:0;background:radial-gradient(ellipse at 85% 0%,#102b4c 0,transparent 34%),var(--bg);color:#f7f8fb;font-family:system-ui,-apple-system,"Segoe UI",sans-serif}
+    .wrap{width:min(1100px,calc(100% - 36px));margin:auto}.nav{height:76px;display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid #ffffff12}
+    .brand{display:flex;align-items:center;gap:12px;font-weight:800;font-size:20px}.brand img{width:42px;height:42px;border-radius:13px}
+    .pill{border:1px solid #ffffff22;color:#c7dfff;border-radius:99px;padding:8px 13px;font-size:12px}
+    .hero{padding:76px 0 54px;display:grid;grid-template-columns:1.05fr .95fr;gap:50px;align-items:center}
+    .eyebrow{color:#75baff;font-size:13px;font-weight:700;letter-spacing:.4px}.hero h1{font-size:clamp(42px,7vw,76px);line-height:1.05;margin:16px 0}.hero p{color:var(--muted);font-size:17px;line-height:1.9;max-width:540px}
+    .actions{display:flex;gap:12px;flex-wrap:wrap;margin-top:26px}.btn{padding:13px 19px;border-radius:14px;text-decoration:none;font-weight:750}.primary{background:var(--blue);color:white}.secondary{border:1px solid #ffffff26;color:#f5f7fb}
+    .screens{display:grid;grid-template-columns:1fr 1fr;gap:12px;transform:rotate(-2deg)}.screens img{width:100%;display:block;border-radius:22px;border:1px solid #ffffff24;box-shadow:0 25px 65px #0009;background:#171a22}.screens img:nth-child(2){transform:translateY(36px)}.screens img:nth-child(3){transform:translateY(-10px)}.screens img:nth-child(4){transform:translateY(26px)}
+    .section{padding:35px 0 70px}.section h2{font-size:26px;margin:0 0 20px}.grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}.feature{background:linear-gradient(145deg,#171b25,#0e1016);border:1px solid var(--line);padding:22px;border-radius:20px}.feature b{display:block;margin-bottom:9px}.feature p{color:var(--muted);line-height:1.7;margin:0;font-size:14px}
+    footer{border-top:1px solid #ffffff12;padding:22px 0 35px;color:#777f90;font-size:12px}
+    @media(max-width:760px){.hero{grid-template-columns:1fr;gap:30px;padding-top:50px}.screens{max-width:470px;margin:0 auto}.grid{grid-template-columns:1fr}.hero p{font-size:15px}.nav{height:66px}}
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <header class="nav">
+      <div class="brand"><img src="https://raw.githubusercontent.com/Saeedking332/Shaghal/android-preview/assets/icon/icon.png" alt="Shaghal"><span>شغّل <small style="color:#8e96a6;font-weight:500">/ Shaghal</small></span></div>
+      <span class="pill">Android preview · قيد التجربة</span>
+    </header>
+    <main>
+      <section class="hero">
+        <div>
+          <div class="eyebrow">مشغّل وسائطك، بطريقتك</div>
+          <h1>مكتبتك.<br>موسيقاك.<br><span style="color:#58aaff">من غير تعقيد.</span></h1>
+          <p>مشغّل صوت وفيديو بواجهة زجاجية داكنة، يدعم مجموعة واسعة من الصيغ وينظّم ملفاتك حسب المجلدات. النسخة الحالية يجري تجهيزها ودعمها لأجهزة Android.</p>
+          <div class="actions">
+            <a class="btn primary" href="https://github.com/Saeedking332/Shaghal/actions/workflows/android.yml">متابعة بناء APK</a>
+            <a class="btn secondary" href="https://github.com/Saeedking332/Shaghal">المصدر على GitHub</a>
+          </div>
+        </div>
+        <div class="screens">
+          <img src="https://raw.githubusercontent.com/Saeedking332/Shaghal/android-preview/docs/screenshots/library.png" alt="واجهة المكتبة">
+          <img src="https://raw.githubusercontent.com/Saeedking332/Shaghal/android-preview/docs/screenshots/folder.png" alt="واجهة المجلدات">
+          <img src="https://raw.githubusercontent.com/Saeedking332/Shaghal/android-preview/docs/screenshots/player.png" alt="مشغل الوسائط">
+          <img src="https://raw.githubusercontent.com/Saeedking332/Shaghal/android-preview/docs/screenshots/menu.png" alt="قائمة التطبيق">
+        </div>
+      </section>
+      <section class="section">
+        <h2>مصمم لتشغيل مكتبتك المحلية</h2>
+        <div class="grid">
+          <article class="feature"><b>🎧 صيغ كثيرة</b><p>تشغيل الصوت والفيديو عبر media_kit وFFmpeg، بما في ذلك FLAC وOPUS وMKV.</p></article>
+          <article class="feature"><b>📁 تنظيم بالمجلدات</b><p>استيراد ملفاتك ومجلداتك والفرز حسب الاسم أو التاريخ، مع المفضلة.</p></article>
+          <article class="feature"><b>🌙 واجهة داكنة</b><p>تصميم OLED داكن مع تأثيرات زجاجية، ودعم العربية والإنجليزية.</p></article>
+        </div>
+      </section>
+    </main>
+    <footer>نسخة معاينة غير نهائية · Shaghal · Android support in progress</footer>
+  </div>
+</body>
+</html>

@@ -1,59 +1,41 @@
 <!doctype html>
 <html lang="ar" dir="rtl">
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="theme-color" content="#08090d">
-  <title>Shaghal | شغّل</title>
-  <style>
-    :root{color-scheme:dark;--bg:#08090d;--panel:#11131a;--muted:#9da3b2;--line:#262a35;--blue:#0a84ff}
-    *{box-sizing:border-box}body{margin:0;background:radial-gradient(ellipse at 85% 0%,#102b4c 0,transparent 34%),var(--bg);color:#f7f8fb;font-family:system-ui,-apple-system,"Segoe UI",sans-serif}
-    .wrap{width:min(1100px,calc(100% - 36px));margin:auto}.nav{height:76px;display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid #ffffff12}
-    .brand{display:flex;align-items:center;gap:12px;font-weight:800;font-size:20px}.brand img{width:42px;height:42px;border-radius:13px}
-    .pill{border:1px solid #ffffff22;color:#c7dfff;border-radius:99px;padding:8px 13px;font-size:12px}
-    .hero{padding:76px 0 54px;display:grid;grid-template-columns:1.05fr .95fr;gap:50px;align-items:center}
-    .eyebrow{color:#75baff;font-size:13px;font-weight:700;letter-spacing:.4px}.hero h1{font-size:clamp(42px,7vw,76px);line-height:1.05;margin:16px 0}.hero p{color:var(--muted);font-size:17px;line-height:1.9;max-width:540px}
-    .actions{display:flex;gap:12px;flex-wrap:wrap;margin-top:26px}.btn{padding:13px 19px;border-radius:14px;text-decoration:none;font-weight:750}.primary{background:var(--blue);color:white}.secondary{border:1px solid #ffffff26;color:#f5f7fb}
-    .screens{display:grid;grid-template-columns:1fr 1fr;gap:12px;transform:rotate(-2deg)}.screens img{width:100%;display:block;border-radius:22px;border:1px solid #ffffff24;box-shadow:0 25px 65px #0009;background:#171a22}.screens img:nth-child(2){transform:translateY(36px)}.screens img:nth-child(3){transform:translateY(-10px)}.screens img:nth-child(4){transform:translateY(26px)}
-    .section{padding:35px 0 70px}.section h2{font-size:26px;margin:0 0 20px}.grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}.feature{background:linear-gradient(145deg,#171b25,#0e1016);border:1px solid var(--line);padding:22px;border-radius:20px}.feature b{display:block;margin-bottom:9px}.feature p{color:var(--muted);line-height:1.7;margin:0;font-size:14px}
-    footer{border-top:1px solid #ffffff12;padding:22px 0 35px;color:#777f90;font-size:12px}
-    @media(max-width:760px){.hero{grid-template-columns:1fr;gap:30px;padding-top:50px}.screens{max-width:470px;margin:0 auto}.grid{grid-template-columns:1fr}.hero p{font-size:15px}.nav{height:66px}}
-  </style>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#08090d"><title>شغّل | Shaghal</title>
+<link rel="stylesheet" href="./styles.css">
 </head>
 <body>
-  <div class="wrap">
-    <header class="nav">
-      <div class="brand"><img src="https://raw.githubusercontent.com/Saeedking332/Shaghal/android-preview/assets/icon/icon.png" alt="Shaghal"><span>شغّل <small style="color:#8e96a6;font-weight:500">/ Shaghal</small></span></div>
-      <span class="pill">Android preview · قيد التجربة</span>
-    </header>
-    <main>
-      <section class="hero">
-        <div>
-          <div class="eyebrow">مشغّل وسائطك، بطريقتك</div>
-          <h1>مكتبتك.<br>موسيقاك.<br><span style="color:#58aaff">من غير تعقيد.</span></h1>
-          <p>مشغّل صوت وفيديو بواجهة زجاجية داكنة، يدعم مجموعة واسعة من الصيغ وينظّم ملفاتك حسب المجلدات. النسخة الحالية يجري تجهيزها ودعمها لأجهزة Android.</p>
-          <div class="actions">
-            <a class="btn primary" href="https://github.com/Saeedking332/Shaghal/actions/workflows/android.yml">متابعة بناء APK</a>
-            <a class="btn secondary" href="https://github.com/Saeedking332/Shaghal">المصدر على GitHub</a>
-          </div>
-        </div>
-        <div class="screens">
-          <img src="https://raw.githubusercontent.com/Saeedking332/Shaghal/android-preview/docs/screenshots/library.png" alt="واجهة المكتبة">
-          <img src="https://raw.githubusercontent.com/Saeedking332/Shaghal/android-preview/docs/screenshots/folder.png" alt="واجهة المجلدات">
-          <img src="https://raw.githubusercontent.com/Saeedking332/Shaghal/android-preview/docs/screenshots/player.png" alt="مشغل الوسائط">
-          <img src="https://raw.githubusercontent.com/Saeedking332/Shaghal/android-preview/docs/screenshots/menu.png" alt="قائمة التطبيق">
-        </div>
-      </section>
-      <section class="section">
-        <h2>مصمم لتشغيل مكتبتك المحلية</h2>
-        <div class="grid">
-          <article class="feature"><b>🎧 صيغ كثيرة</b><p>تشغيل الصوت والفيديو عبر media_kit وFFmpeg، بما في ذلك FLAC وOPUS وMKV.</p></article>
-          <article class="feature"><b>📁 تنظيم بالمجلدات</b><p>استيراد ملفاتك ومجلداتك والفرز حسب الاسم أو التاريخ، مع المفضلة.</p></article>
-          <article class="feature"><b>🌙 واجهة داكنة</b><p>تصميم OLED داكن مع تأثيرات زجاجية، ودعم العربية والإنجليزية.</p></article>
-        </div>
-      </section>
-    </main>
-    <footer>نسخة معاينة غير نهائية · Shaghal · Android support in progress</footer>
-  </div>
-</body>
-</html>
+<div class="app-shell">
+<aside class="sidebar" id="sidebar">
+  <div class="brand"><div class="brand-mark">ش</div><div><b>شغّل</b><small>SHAGHAL PLAYER</small></div></div>
+  <div class="side-label">المكتبة</div>
+  <nav class="side-nav">
+    <button class="nav-item active" data-tab="all"><span>▤</span> كل الملفات <em id="allCount">0</em></button>
+    <button class="nav-item" data-tab="audio"><span>♫</span> الصوتيات</button>
+    <button class="nav-item" data-tab="video"><span>▣</span> الفيديوهات</button>
+    <button class="nav-item" data-tab="favorites"><span>♡</span> المفضلة</button>
+  </nav>
+  <div class="side-label folders-label">المجلدات</div><div id="folderList" class="folder-list"><p class="muted tiny">أضف ملفاتك لتظهر مجلداتك هنا</p></div>
+  <div class="sidebar-bottom"><div class="storage-card"><span class="storage-icon">◈</span><div><b>مكتبتك محلية</b><small>ملفاتك لا تغادر متصفحك</small></div><i class="secure-dot"></i></div><button id="themeBtn" class="theme-btn">☼ <span>تبديل المظهر</span></button></div>
+</aside>
+<main class="main">
+<header class="topbar"><button class="icon-btn mobile-menu" id="menuBtn" aria-label="القائمة">☰</button><div class="crumb">مكتبتي <span>/</span> <b id="pageTitle">كل الملفات</b></div><div class="top-actions"><label class="search"><span>⌕</span><input id="search" placeholder="ابحث في مكتبتك..." autocomplete="off"><kbd>⌘ K</kbd></label><button class="avatar">S</button></div></header>
+<section class="content">
+  <div class="welcome-row"><div><div class="eyebrow"><i></i> مكتبتك الموسيقية</div><h1 id="heading">كل الملفات<span>.</span></h1><p id="subheading">كل ما تحب، في مكان واحد.</p></div><div class="import-actions"><button class="btn btn-secondary" id="folderBtn">＋ مجلد</button><button class="btn btn-primary" id="filesBtn"><span>＋</span> إضافة ملفات</button><input id="fileInput" type="file" accept="audio/*,video/*,.flac,.opus,.mkv,.avi,.webm" multiple hidden><input id="folderInput" type="file" webkitdirectory directory multiple hidden></div></div>
+  <div class="stats-row"><div class="stat"><span class="stat-icon blue">♫</span><div><b id="audioCount">0</b><small>ملف صوتي</small></div></div><div class="stat"><span class="stat-icon purple">▣</span><div><b id="videoCount">0</b><small>فيديو</small></div></div><div class="stat"><span class="stat-icon pink">♡</span><div><b id="favCount">0</b><small>في المفضلة</small></div></div><div class="stat status-stat"><span class="status-pulse"></span><div><b>جاهز للتشغيل</b><small>المتصفح يدير مكتبتك</small></div></div></div>
+  <div class="section-toolbar"><div class="tabs"><button class="filter-tab active" data-filter="all">الكل</button><button class="filter-tab" data-filter="audio">صوت</button><button class="filter-tab" data-filter="video">فيديو</button></div><div class="toolbar-right"><span id="resultCount" class="muted tiny">0 عنصر</span><select id="sortSelect" aria-label="ترتيب الملفات"><option value="name">الاسم</option><option value="date">الأحدث</option><option value="folder">المجلد</option></select><button class="view-btn active" id="listView" title="عرض القائمة">☷</button><button class="view-btn" id="gridView" title="عرض الشبكة">▦</button></div></div>
+  <div id="library" class="library list-view"><div class="empty-state"><div class="empty-art"><span>♫</span><i>✦</i></div><h2>مكتبتك لسه فاضية</h2><p>أضف ملفات الصوت أو الفيديو من جهازك وابدأ الاستماع.</p><button class="btn btn-primary" id="emptyImport">＋ اختر ملفاتك</button><small>MP3 · WAV · MP4 · WebM والمزيد حسب دعم المتصفح</small></div></div>
+</section>
+</main>
+</div>
+<div class="player-dock" id="playerDock">
+  <div class="now-playing"><div class="cover" id="currentCover"><span>♫</span></div><div class="track-meta"><b id="currentName">لا يوجد شيء قيد التشغيل</b><small id="currentType">اختر ملفًا من مكتبتك</small></div><button class="heart-btn" id="playerFav" title="إضافة للمفضلة">♡</button></div>
+  <div class="playback"><div class="player-controls"><button id="shuffleBtn" title="عشوائي">⤨</button><button id="prevBtn" title="السابق">上一</button><button class="play-main" id="playBtn" title="تشغيل">▶</button><button id="nextBtn" title="التالي">下一</button><button id="repeatBtn" title="تكرار">↻</button></div><div class="timeline"><span id="elapsed">0:00</span><input id="seek" type="range" min="0" max="1000" value="0"><span id="duration">0:00</span></div></div>
+  <div class="player-extra"><button id="muteBtn" title="كتم الصوت">◖</button><input id="volume" type="range" min="0" max="1" step=".01" value=".8"><select id="speed" title="سرعة التشغيل"><option>1</option><option>1.25</option><option>1.5</option><option>1.75</option><option>2</option></select><button id="queueBtn" title="قائمة التشغيل">☷</button>
+</div>
+</div>
+<div class="video-overlay" id="videoOverlay"><button id="closeVideo">✕</button><video id="videoPlayer" controls playsinline></video></div>
+<div class="toast" id="toast"></div>
+<script src="./app.js"></script>
+</body></html>

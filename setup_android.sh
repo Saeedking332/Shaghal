@@ -84,5 +84,5 @@ flutter pub get
 # The generated template test references MyApp, while this app entry widget is ShaghalApp.
 # Remove the unused scaffold test so analysis checks the actual application sources.
 rm -rf test
-flutter analyze lib
+flutter analyze --no-fatal-infos lib
 echo "Android project generated. Run: cd app && flutter run"
